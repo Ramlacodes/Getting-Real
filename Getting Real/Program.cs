@@ -4,13 +4,15 @@
     {
         static void Main(string[] args)
         {
+            
+
+            bool isRunning = true;
+            while (isRunning) {
+            
             Console.WriteLine("\t************************************");
             Console.WriteLine("\tMarrakech Street-Foods Bookingsystem");
             Console.WriteLine("\t************************************");
 
-            bool isRunning = true;
-            while (isRunning) {
-            //Console.Clear();
             Console.WriteLine("Indtast navn");
             string navn = Console.ReadLine();
 
