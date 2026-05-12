@@ -8,8 +8,26 @@
             Console.WriteLine("\tMarrakech Street-Foods Bookingsystem");
             Console.WriteLine("\t************************************");
 
+            bool isRunning = true;
+            while (isRunning) {
+            //Console.Clear();
+            Console.WriteLine("Indtast navn");
+            string navn = Console.ReadLine();
 
+            Console.WriteLine("Indtast email");
+            string email = Console.ReadLine();
 
+            Console.WriteLine("Indtast telefonnummer");
+            int tlf = Convert.ToInt32(Console.ReadLine());
+
+            
+            Kunde kunde1 = new Kunde(navn, email, tlf);
+            
+            Console.WriteLine($"Navn: {navn}");
+            Console.WriteLine($"Email: {email}");
+            Console.WriteLine($"Télefon: {tlf}");
+
+            }
 
             Console.ReadKey();
         }

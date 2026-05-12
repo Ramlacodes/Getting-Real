@@ -6,12 +6,15 @@ namespace Getting_Real
 {
     internal class Booking
     {
-        public int bookingId { get; set; }
-        public DateTime bookingDato { get; set; }
-        public int antalKuvret { get; set; }
-        public string lokation { get; set; }
-        public string status { get; set; }
-        public string kommentar { get; set; }
+        public int BookingId { get; set; }
+        public DateTime BookingDato { get; set; }
+        public int AntalKuvret { get; set; }
+        public string Lokation { get; set; }
+        public string Status { get; set; }
+        public string Kommentar { get; set; }
+        public Kunde kunde { get; set; }
+        
+        
 
         public double BeregnPris()
         {
