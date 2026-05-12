@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\t***********************************");
-            Console.WriteLine("\tMarrakech Street-Foods Bookingsytem");
-            Console.WriteLine("\t***********************************");
+            Console.WriteLine("\t************************************");
+            Console.WriteLine("\tMarrakech Street-Foods Bookingsystem");
+            Console.WriteLine("\t************************************");
 
 
 
