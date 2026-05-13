@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-// namespace "StreetFood" kan sagtens ændres til noget andet.
-namespace StreetFood
+// Har ændret mit namespace til "Getting_Real"
+namespace Getting_Real
 {
     public class MenuPakke
     {
