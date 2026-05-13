@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Getting_Real
 {
-    public class PrisBeregner : IPrisBeregner
+    public class PriceCalculator : IPriceCalculator
     {
-        public double BeregnPris(double prisPrKuvert, int antalKuverter)
+        public double CalculatePrice(double pricePrServing, int antalKuverter)
         {
             if (antalKuverter <= 0)
             {
@@ -17,7 +17,7 @@ namespace Getting_Real
             else
             {
 
-                return prisPrKuvert * antalKuverter;
+                return pricePrServing * antalKuverter;
             }
         }
 
