@@ -6,6 +6,6 @@ namespace Getting_Real
 {
     public interface IPrisBeregner
     {
-        double BeregnPris(Booking booking);
+        double BeregnPris(double prisPrKuvert, int antalKuverter);
     }
 }

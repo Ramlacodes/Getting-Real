@@ -6,17 +6,22 @@ namespace Getting_Real
 {
     public class PrisBeregner : IPrisBeregner
     {
-        
-    public double BeregnPris(Booking booking)
+        public double BeregnPris(double prisPrKuvert, int antalKuverter)
         {
-            if (booking == null)
-                throw new ArgumentNullException(nameof(booking));
+            if (antalKuverter <= 0)
+            {
+                Console.WriteLine("Antal kuverter skal være positivt.");
+                return 0;
+            }
 
-            if (booking.MenuPakke == null)
-                throw new Exception("Booking mangler menu pakke");
+            else
+            {
 
-            return booking.AntalKuverter * booking.MenuPakke.PrisPrKuvert;
+                return prisPrKuvert * antalKuverter;
+            }
         }
 
     }
 }
+
+       

@@ -21,10 +21,6 @@ namespace Getting_Real
             Retter = new List<Ret>();
         }
 
-        // Tilføjer en ret til pakke.
-        public void TilfoejRet(Ret ret)
-        {
-            Retter.Add(ret);
-        }
+      
     }
 }

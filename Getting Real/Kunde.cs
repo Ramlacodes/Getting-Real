@@ -6,16 +6,16 @@ namespace Getting_Real
 {
     public class Kunde
     {
-        public string Navn { get; set; }
-        public string Email { get; set; }
-        public int Telefon { get; set; }
+        public string KundeNavn { get; set; }
+        public string KundeEmail { get; set; }
+        public int KundeTelefon { get; set; }
 
 
-        public Kunde(string navn, string email, int telefon)
+        public Kunde(string kundeNavn, string kundeEmail, int kundeTelefon)
         {
-            Navn= navn;
-            Email = email;
-            Telefon = telefon;
+            KundeNavn= kundeNavn;
+            KundeEmail = kundeEmail;
+            KundeTelefon = kundeTelefon;
         }
     }
 }

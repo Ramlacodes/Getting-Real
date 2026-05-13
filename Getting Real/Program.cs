@@ -10,7 +10,7 @@
             while (isRunning) {
             
             Console.WriteLine("\t************************************");
-            Console.WriteLine("\tMarrakech Street-Foods Bookingsystem");
+            Console.WriteLine("\tMarrakech Street Food Bookingsystem");
             Console.WriteLine("\t************************************");
 
             Console.WriteLine("Indtast navn");
