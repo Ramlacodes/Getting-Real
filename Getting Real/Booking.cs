@@ -17,7 +17,7 @@ namespace Getting_Real
         public Customer customer { get; set; }
         public MenuPackage menuPackage { get; set; }
 
-        public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer)
+        public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer, MenuPackage menuPackage)
         {
             BookingId = bookingId;
             EventType = eventType;
