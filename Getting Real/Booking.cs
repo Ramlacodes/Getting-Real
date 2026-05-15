@@ -13,11 +13,12 @@ namespace Getting_Real
         public string Location { get; set; }
         public string BookingStatus { get; set; }
         public string Comment { get; set; }
+        
         public Customer customer { get; set; }
-        
-        
+        //public MenuPackage menuPackage { get; set; }
 
-       
 
+
+         
     }
 }
