@@ -15,9 +15,20 @@ namespace Getting_Real
         public string Comment { get; set; }
         
         public Customer customer { get; set; }
-        //public MenuPackage menuPackage { get; set; }
+        public MenuPackage menuPackage { get; set; }
 
-
+        public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer)
+        {
+            BookingId = bookingId;
+            EventType = eventType;
+            BookingDato = bookingDato;
+            AmountOfPlates = amountOfPlates;
+            Location = location;
+            BookingStatus = bookingStatus;
+            Comment = comment;
+            this.customer = customer;
+            this.menuPackage = menuPackage;
+        }
 
          
     }
