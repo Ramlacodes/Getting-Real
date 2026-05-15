@@ -7,17 +7,17 @@ namespace Getting_Real
         // Properties fra DCD.
         public int PackageID { get; set; }
         public string Name { get; set; }
-        public double PricePrServing { get; set; }
+        public double PricePrPlate { get; set; }
 
         // Laver liste så pakker kan indeholde flere retter.
         public List<Ret> Retter { get; set; }
 
         
-        public MenuPackage(int packageID, string name, double pricePrServing)
+        public MenuPackage(int packageID, string name, double pricePrPlate)
         {
             PackageID = packageID;
             Name = name;
-            PricePrServing = pricePrServing;
+            PricePrPlate = pricePrPlate;
             Retter = new List<Ret>();
         }
 

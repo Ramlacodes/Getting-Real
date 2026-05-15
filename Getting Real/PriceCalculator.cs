@@ -6,9 +6,9 @@ namespace Getting_Real
 {
     public class PriceCalculator : IPriceCalculator
     {
-        public double CalculatePrice(double pricePrServing, int antalKuverter)
+        public double CalculatePrice(double pricePrPlate, int amountOfPlates)
         {
-            if (antalKuverter <= 0)
+            if (amountOfPlates <= 0)
             {
                 Console.WriteLine("Antal kuverter skal være positivt.");
                 return 0;
@@ -17,7 +17,7 @@ namespace Getting_Real
             else
             {
 
-                return pricePrServing * antalKuverter;
+                return pricePrPlate * amountOfPlates;
             }
         }
 
