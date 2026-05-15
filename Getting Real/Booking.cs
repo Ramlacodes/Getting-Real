@@ -9,7 +9,7 @@ namespace Getting_Real
         public int BookingId { get; set; }
         public string EventType { get; set; }
         public DateTime BookingDato { get; set; }
-        public int AntalKuverter { get; set; }
+        public int AmountOfPlates { get; set; }
         public string Location { get; set; }
         public string BookingStatus { get; set; }
         public string Comment { get; set; }

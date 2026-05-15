@@ -6,6 +6,6 @@ namespace Getting_Real
 {
     public interface IPriceCalculator
     {
-        double CalculatePrice(double pricePrServing, int antalKuverter);
+        double CalculatePrice(double pricePrServing, int amountOfPlates);
     }
 }
