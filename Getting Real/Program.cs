@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json;
 
 namespace Getting_Real
 {
@@ -14,13 +15,15 @@ namespace Getting_Real
             MenuPackageRepository menuRepo = new MenuPackageRepository();
             PriceCalculator calculator = new PriceCalculator();
 
+            List<Customer> customers = new List<Customer>();
+
             // Tilføj menupakker
             menuRepo.AddMenuPackage(new MenuPackage(1, "Casablanca Kebab Wrap", 135));
             menuRepo.AddMenuPackage(new MenuPackage(2, "Fez Falafel Wrap", 135));
             menuRepo.AddMenuPackage(new MenuPackage(3, "Marrakech Chicken Wrap", 135));
 
 
-
+            
             while (isRunning)
             {
                 Console.Clear();
@@ -33,6 +36,8 @@ namespace Getting_Real
                 Console.WriteLine("2. Opret booking");
                 Console.WriteLine("3. Vis menupakker");
                 Console.WriteLine("4. Afslut");
+                Console.WriteLine("\nKUN FOR ADMIN");
+                Console.WriteLine("5. Se alle bookings");
 
                 Console.Write("\nVælg et nummer: ");
 
@@ -41,6 +46,10 @@ namespace Getting_Real
                 switch (valg)
                 {
                     case "1":
+
+                        Console.Clear();
+
+                        Console.WriteLine("Opret kunde");
 
                         Console.WriteLine("\nIndtast navn:");
                         string navn = Console.ReadLine();
@@ -57,8 +66,9 @@ namespace Getting_Real
                             Console.WriteLine("Ugyldigt input! Indtast et tal:");
                         }
 
-
+                        // Opret kunde og tilføj til listen
                         Customer customer1 = new Customer(navn, email, tlf);
+                        customers.Add(customer1);
 
                         Console.WriteLine("\nKunde oprettet!");
                         Console.WriteLine($"Navn: {navn}");
@@ -69,39 +79,129 @@ namespace Getting_Real
 
                     case "2":
 
-                        Console.WriteLine("\n--- BOOKING KOMMENTAR ---");
+                        Console.Clear();
 
-                        Console.WriteLine("Hvilket event er det?");
+                        // --- Vælg kunde ---
+                        if (customers.Count == 0)
+                        {
+                            Console.WriteLine("Ingen kunder oprettet endnu!");
+                            break;
+                        }
+
+                        Console.WriteLine("\n--- VÆLG KUNDE ---");
+
+                        for (int i = 0; i < customers.Count; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {customers[i].CustomerName}");
+                        }
+
+                        Console.WriteLine("Opret booking");
+
+                        Console.Write("Vælg kunde nummer: ");
+                        int kundeIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                        if (kundeIndex < 0 || kundeIndex >= customers.Count)
+                        {
+                            Console.WriteLine("Ugyldigt valg!");
+                            break;
+                        }
+
+                        Customer valgtKunde = customers[kundeIndex];
+
+                        // --- Booking info ---
+                        Console.WriteLine("\nEvent type:");
                         string eventType = Console.ReadLine();
 
-                        Console.WriteLine("Tilføj kommentar eller allergier:");
+                        Console.WriteLine("Indtast dato for event (dd-mm-yyyy):");
+
+                        DateTime bookingDato;
+
+                        while (!DateTime.TryParse(Console.ReadLine(), out bookingDato))
+                        {
+                            Console.WriteLine("Ugyldig dato! Prøv igen (fx 15-05-2026):");
+                        }
+
+
+                        Console.WriteLine("Antal kuverter:");
+                        int antal = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Lokation:");
+                        string location = Console.ReadLine();
+
+                        Console.WriteLine("Kommentar:");
                         string kommentar = Console.ReadLine();
 
-                        Console.WriteLine("\nBookingoplysninger gemt!");
+                        // --- Vælg menu ---
+                        Console.WriteLine("\n--- VÆLG MENUPAKKE ---");
 
-                        Console.WriteLine($"Event type: {eventType}");
-                        Console.WriteLine($"Kommentar: {kommentar}");
+                        foreach (var m in menuRepo.GetAllMenuPackages())
+                        {
+                            Console.WriteLine($"ID: {m.PackageID} - {m.Name} ({m.PricePrPlate} kr)");
+                        }
+
+                        Console.Write("Indtast menu ID: ");
+                        int menuId = Convert.ToInt32(Console.ReadLine());
+
+                        // Find den valgte menupakke i repository
+                        MenuPackage valgtMenu = menuRepo.GetAllMenuPackages().Find(m => m.PackageID == menuId);
+
+                        if (valgtMenu == null)
+                        {
+                            Console.WriteLine("Ugyldigt menuvalg!");
+                            break;
+                        }
+
+                        // Pris
+                        double pris = calculator.CalculatePrice(valgtMenu.PricePrPlate, antal);
+
+                        // Opret booking
+                        Booking booking = new Booking()
+                        {
+                            BookingId = bookingRepo.GetAllBookings().Count + 1,
+                            EventType = eventType,
+                            BookingDato = bookingDato,
+                            AmountOfPlates = antal,
+                            Location = location,
+                            BookingStatus = "Oprettet",
+                            Comment = kommentar,
+                            customer = valgtKunde,
+                            menuPackage = valgtMenu
+                        };
+                        // Tilføj booking til repository
+                        bookingRepo.AddBooking(booking);
+
+                        Console.WriteLine("\n Booking oprettet!");
+                        Console.WriteLine($"Kunde: {valgtKunde.CustomerName}");
+                        Console.WriteLine($"Menu: {valgtMenu.Name}");
+                        Console.WriteLine($"Pris: {pris} kr");
 
                         break;
 
-                    case "3":
 
+                    case "3":
                         Console.WriteLine("\n--- MENUPAKKER ---");
 
-                        Console.WriteLine("\nMP001");
-                        Console.WriteLine("Casablanca Kebab Wrap");
-                        Console.WriteLine("135 kr");
-                        Console.WriteLine("Crispy Wrap med Kebab, Salat og Husets Dressing");
+                        // Hent alle menupakker fra repository
+                        var menuer = menuRepo.GetAllMenuPackages();
 
-                        Console.WriteLine("\nMP002");
-                        Console.WriteLine("Fez Falafel Wrap");
-                        Console.WriteLine("135 kr");
-                        Console.WriteLine("Crispy Wrap med Falafel, Salat og Husets Dressing");
+                        if (menuer.Count == 0)
+                        {
+                            Console.WriteLine("Der er ingen menupakker endnu.");
+                        }
+                        else
+                        {
+                            // Vis hver menupakke
+                            foreach (var m in menuer)
+                            {
+                                Console.WriteLine("\n----------------------");
+                                Console.WriteLine($"ID: {m.PackageID}");
+                                Console.WriteLine($"Navn: {m.Name}");
+                                Console.WriteLine($"Pris pr kuvert: {m.PricePrPlate} kr");
+                            }
+                        }
 
-                        Console.WriteLine("\nMP003");
-                        Console.WriteLine("Marrakech Chicken Wrap");
-                        Console.WriteLine("135 kr");
-                        Console.WriteLine("Crispy Wrap med Kylling, Salat og Husets Dressing");
+                        break;
+
 
                         break;
 
@@ -111,6 +211,37 @@ namespace Getting_Real
                         isRunning = false;
 
                         break;
+
+                    case "5":
+                        Console.WriteLine("\n--- ALLE BOOKINGER ---");
+
+                        var bookings = bookingRepo.GetAllBookings();
+
+                        if (bookings.Count == 0)
+                        {
+                            Console.WriteLine("Der er ingen bookinger endnu.");
+                        }
+                        else
+                        {
+                            foreach (var b in bookings)
+                            {
+                                Console.WriteLine("\n----------------------");
+                                Console.WriteLine($"Booking ID: {b.BookingId}");
+                                Console.WriteLine($"Kunde: {b.customer.CustomerName}");
+                                Console.WriteLine($"Event: {b.EventType}");
+                                Console.WriteLine($"Dato: {b.BookingDato}");
+                                Console.WriteLine($"Antal kuverter: {b.AmountOfPlates}");
+                                Console.WriteLine($"Lokation: {b.Location}");
+                                Console.WriteLine($"Menu: {b.menuPackage?.Name}");
+                                Console.WriteLine($"Kommentar: {b.Comment}");
+                                Console.WriteLine($"Status: {b.BookingStatus}");
+                            }
+                        }
+
+                        break;
+
+
+                   
 
                     default:
 
