@@ -8,16 +8,18 @@ namespace Getting_Real
         public int PackageID { get; set; }
         public string Name { get; set; }
         public double PricePrPlate { get; set; }
+        public string Ingredients { get; set; }
 
         // Laver liste så pakker kan indeholde flere retter.
         public List<Ret> Retter { get; set; }
 
         
-        public MenuPackage(int packageID, string name, double pricePrPlate)
+        public MenuPackage(int packageID, string name, double pricePrPlate, string ingredients)
         {
             PackageID = packageID;
             Name = name;
             PricePrPlate = pricePrPlate;
+            Ingredients = ingredients;
             Retter = new List<Ret>();
         }
 

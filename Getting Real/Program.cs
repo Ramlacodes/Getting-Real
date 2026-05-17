@@ -18,9 +18,9 @@ namespace Getting_Real
             List<Customer> customers = new List<Customer>();
 
             // Tilføj menupakker
-            menuRepo.AddMenuPackage(new MenuPackage(1, "Casablanca Kebab Wrap", 135));
-            menuRepo.AddMenuPackage(new MenuPackage(2, "Fez Falafel Wrap", 135));
-            menuRepo.AddMenuPackage(new MenuPackage(3, "Marrakech Chicken Wrap", 135));
+            menuRepo.AddMenuPackage(new MenuPackage(1, "Casablanca Kebab Wrap", 135, "Crispy Wrap med Kebab, Salat og Husets Dressing"));
+            menuRepo.AddMenuPackage(new MenuPackage(2, "Fez Falafel Wrap", 135, "Crispy Wrap med Falafel, Salat og Husets Dressing"));
+            menuRepo.AddMenuPackage(new MenuPackage(3, "Marrakech Chicken Wrap", 135, "Crispy Wrap med Kylling, Salat og Husets Dressing"));
 
 
             
@@ -33,11 +33,11 @@ namespace Getting_Real
                 Console.WriteLine("********************************");
 
                 Console.WriteLine("1. Opret kunde");
-                Console.WriteLine("2. Opret booking");
+                Console.WriteLine("2. Opret bookingforespørgsel");
                 Console.WriteLine("3. Vis menupakker");
                 Console.WriteLine("4. Afslut");
                 Console.WriteLine("\nKUN FOR ADMIN");
-                Console.WriteLine("5. Se alle bookings");
+                Console.WriteLine("5. Se alle bookingforespørgsler");
 
                 Console.Write("\nVælg et nummer: ");
 
@@ -95,7 +95,7 @@ namespace Getting_Real
                             Console.WriteLine($"{i + 1}. {customers[i].CustomerName}");
                         }
 
-                        Console.WriteLine("Opret booking");
+                        Console.WriteLine("Opret bookingforespørgsel");
 
                         Console.Write("Vælg kunde nummer: ");
                         int kundeIndex = Convert.ToInt32(Console.ReadLine()) - 1;
@@ -136,7 +136,7 @@ namespace Getting_Real
 
                         foreach (var m in menuRepo.GetAllMenuPackages())
                         {
-                            Console.WriteLine($"ID: {m.PackageID} - {m.Name} ({m.PricePrPlate} kr)");
+                            Console.WriteLine($"ID: {m.PackageID} - {m.Name} ({m.PricePrPlate} kr \n Indgredienser {m.Ingredients})");
                         }
 
                         Console.Write("Indtast menu ID: ");
@@ -170,10 +170,12 @@ namespace Getting_Real
                         // Tilføj booking til repository
                         bookingRepo.AddBooking(booking);
 
-                        Console.WriteLine("\n Booking oprettet!");
+                        Console.WriteLine("\n Bookingforespørgsel oprettet!");
+                        Console.WriteLine("\nTak for din bookingforespørgsel. Du vil modtage en e-mail inden for kort tid med dit bookingnummer.\n Marrakech Street Food vil herefter kontakte dig for den endelige bekræftelse af din booking");
                         Console.WriteLine($"Kunde: {valgtKunde.CustomerName}");
                         Console.WriteLine($"Menu: {valgtMenu.Name}");
                         Console.WriteLine($"Pris: {pris} kr");
+
 
                         break;
 
@@ -197,6 +199,7 @@ namespace Getting_Real
                                 Console.WriteLine($"ID: {m.PackageID}");
                                 Console.WriteLine($"Navn: {m.Name}");
                                 Console.WriteLine($"Pris pr kuvert: {m.PricePrPlate} kr");
+                                Console.WriteLine($"Ingredienser: {m.Ingredients}");
                             }
                         }
 
