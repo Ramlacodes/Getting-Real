@@ -112,18 +112,36 @@ namespace Getting_Real
                         Console.WriteLine("\nEvent type: (Eksempel: Bryllup, Fødselsdag, Konfirmation)");
                         string eventType = Console.ReadLine();
 
-                        Console.WriteLine("Indtast dato for event (dd-mm-yyyy):");
 
                         DateTime bookingDato;
 
-                        while (!DateTime.TryParse(Console.ReadLine(), out bookingDato))
+                        //while (!DateTime.TryParse(Console.ReadLine(), out bookingDato))
+                        //{
+                        //    Console.WriteLine("Ugyldig dato! Prøv igen (fx 15-05-2026):");
+                        //}
+
+                        while (true)
                         {
-                            Console.WriteLine("Ugyldig dato! Prøv igen (fx 15-05-2026):");
+                            Console.WriteLine("Indtast bookingdato (dd-MM-yyyy):");
+
+                            if (!DateTime.TryParse(Console.ReadLine(), out bookingDato))
+                            {
+                                Console.WriteLine("Ugyldig dato!  Prøv igen (fx 15-05-2026)");
+                                continue;
+                            }
+                            // Tjek om datoen allerede er optaget
+                            bool datoOptaget = bookingRepo.GetAllBookings()
+                                .Any(b => b.BookingDato.Date == bookingDato.Date);
+
+                            if (datoOptaget)
+                            {
+                                Console.WriteLine("Datoen er allerede optaget! Vælg en anden.");
+                            }
+                            else
+                            {
+                                break; // gyldig dato
+                            }
                         }
-
-
-                        //Console.WriteLine("Antal kuverter:");
-                        //int antal = Convert.ToInt32(Console.ReadLine());
 
                         Console.WriteLine("Lokation:");
                         string location = Console.ReadLine();
