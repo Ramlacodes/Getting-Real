@@ -6,6 +6,7 @@ namespace Getting_Real
 {
     public class PriceCalculator : IPriceCalculator
     {
+        //Metode til udregning af samlet pris
         public double CalculatePrice(double pricePrPlate, int amountOfPlates)
         {
             if (amountOfPlates <= 0)

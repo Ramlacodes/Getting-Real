@@ -105,7 +105,7 @@ namespace Getting_Real
                             Console.WriteLine("Ugyldigt valg!");
                             break;
                         }
-
+                        //
                         Customer valgtKunde = customers[kundeIndex];
 
                         // --- Booking info ---
@@ -217,7 +217,7 @@ namespace Getting_Real
 
                     case "5":
                         Console.WriteLine("\n--- ALLE BOOKINGER ---");
-
+                        
                         var bookings = bookingRepo.GetAllBookings();
 
                         if (bookings.Count == 0)

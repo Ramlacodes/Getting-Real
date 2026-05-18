@@ -7,6 +7,7 @@ namespace Getting_Real
     public class MenuPackageRepository
     {
         private List<MenuPackage> menuPackages = new List<MenuPackage>();
+        //Metode til tilføjelse af menupakker
         public void AddMenuPackage(MenuPackage menuPackage)
         {
             menuPackages.Add(menuPackage);

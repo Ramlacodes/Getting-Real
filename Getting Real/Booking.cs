@@ -6,6 +6,7 @@ namespace Getting_Real
 {
     public class Booking
     {
+        //Properties fra DCD
         public int BookingId { get; set; }
         public string EventType { get; set; }
         public DateTime BookingDato { get; set; }
@@ -14,9 +15,11 @@ namespace Getting_Real
         public string BookingStatus { get; set; }
         public string Comment { get; set; }
         
+        //Kunde og menupakke bliver knyttet til booking
         public Customer customer { get; set; }
         public MenuPackage menuPackage { get; set; }
 
+        //Tom konstruktør, der gør at vi kan bruge brugerinput til en booking.
         public Booking() { }
 
         public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer, MenuPackage menuPackage)
