@@ -109,7 +109,7 @@ namespace Getting_Real
                         Customer valgtKunde = customers[kundeIndex];
 
                         // --- Booking info ---
-                        Console.WriteLine("\nEvent type:");
+                        Console.WriteLine("\nEvent type: (Eksempel: Bryllup, Fødselsdag, Konfirmation)");
                         string eventType = Console.ReadLine();
 
                         Console.WriteLine("Indtast dato for event (dd-mm-yyyy):");
@@ -122,8 +122,8 @@ namespace Getting_Real
                         }
 
 
-                        Console.WriteLine("Antal kuverter:");
-                        int antal = Convert.ToInt32(Console.ReadLine());
+                        //Console.WriteLine("Antal kuverter:");
+                        //int antal = Convert.ToInt32(Console.ReadLine());
 
                         Console.WriteLine("Lokation:");
                         string location = Console.ReadLine();
@@ -151,6 +151,9 @@ namespace Getting_Real
                             break;
                         }
 
+                        Console.WriteLine("Antal kuverter:");
+                        int antal = Convert.ToInt32(Console.ReadLine());
+
                         // Pris
                         double pris = calculator.CalculatePrice(valgtMenu.PricePrPlate, antal);
 
@@ -174,7 +177,12 @@ namespace Getting_Real
                         Console.WriteLine("\nTak for din bookingforespørgsel. Du vil modtage en e-mail inden for kort tid med dit bookingnummer.\n Marrakech Street Food vil herefter kontakte dig for den endelige bekræftelse af din booking");
                         Console.WriteLine($"Kunde: {valgtKunde.CustomerName}");
                         Console.WriteLine($"Menu: {valgtMenu.Name}");
+                        Console.WriteLine($"Antal kuverter: {antal}");
+                        Console.WriteLine($"Event type: {eventType}");
+                        Console.WriteLine($"Dato: {bookingDato}");
+                        Console.WriteLine($"Lokation: {location}");
                         Console.WriteLine($"Pris: {pris} kr");
+                        
 
 
                         break;
