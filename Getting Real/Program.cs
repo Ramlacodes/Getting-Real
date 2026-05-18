@@ -54,8 +54,21 @@ namespace Getting_Real
                         Console.WriteLine("\nIndtast navn:");
                         string navn = Console.ReadLine();
 
-                        Console.WriteLine("Indtast email:");
-                        string email = Console.ReadLine();
+
+                        string email;
+                        // Validering for at sikre, at email indeholder "@" og "."
+                        do
+                        {
+                            Console.WriteLine("Indtast email:");
+                            email = Console.ReadLine();
+
+                            if (!email.Contains("@") || !email.Contains("."))
+                            {
+                                Console.WriteLine("Ugyldig email! Prøv igen.");
+                            }
+
+                        } while (!email.Contains("@") || !email.Contains("."));
+
 
                         Console.WriteLine("Indtast telefonnummer:");
 
@@ -114,11 +127,6 @@ namespace Getting_Real
 
 
                         DateTime bookingDato;
-
-                        //while (!DateTime.TryParse(Console.ReadLine(), out bookingDato))
-                        //{
-                        //    Console.WriteLine("Ugyldig dato! Prøv igen (fx 15-05-2026):");
-                        //}
 
                         while (true)
                         {
