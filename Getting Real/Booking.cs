@@ -22,19 +22,21 @@ namespace Getting_Real
         //Tom konstruktør, der gør at vi kan bruge brugerinput til en booking.
         public Booking() { }
 
-        public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer, MenuPackage menuPackage)
-        {
-            BookingId = bookingId;
-            EventType = eventType;
-            BookingDato = bookingDato;
-            AmountOfPlates = amountOfPlates;
-            Location = location;
-            BookingStatus = bookingStatus;
-            Comment = comment;
-            this.customer = customer;
-            this.menuPackage = menuPackage;
-        }
+        //Konstruktør, der gør at vi kan oprette en booking med alle properties. Den er ikke i brug, da vi bruger den tomme konstruktør og sætter properties via brugerinput.
 
-         
+        //public Booking(int bookingId, string eventType, DateTime bookingDato, int amountOfPlates, string location, string bookingStatus, string comment, Customer customer, MenuPackage menuPackage)
+        //{
+        //    BookingId = bookingId;
+        //    EventType = eventType;
+        //    BookingDato = bookingDato;
+        //    AmountOfPlates = amountOfPlates;
+        //    Location = location;
+        //    BookingStatus = bookingStatus;
+        //    Comment = comment;
+        //    this.customer = customer;
+        //    this.menuPackage = menuPackage;
+        //}
+
+
     }
 }
