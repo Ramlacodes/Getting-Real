@@ -111,15 +111,15 @@ namespace Getting_Real
                         Console.WriteLine("Opret bookingforespørgsel");
 
                         Console.Write("Vælg kunde nummer: ");
-                        int kundeIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+                        int kundeNummer = Convert.ToInt32(Console.ReadLine()) - 1;
 
-                        if (kundeIndex < 0 || kundeIndex >= customers.Count)
+                        if (kundeNummer < 0 || kundeNummer >= customers.Count)
                         {
                             Console.WriteLine("Ugyldigt valg!");
                             break;
                         }
-                        //
-                        Customer valgtKunde = customers[kundeIndex];
+                        
+                        Customer valgtKunde = customers[kundeNummer];
 
                         // --- Booking info ---
                         Console.WriteLine("\nEvent type: (Eksempel: Bryllup, Fødselsdag, Konfirmation)");
